@@ -1,0 +1,2 @@
+export type { ClaimReadyOutbox, ClaimedOutbox, Clock, DispatchDlq, DispatchStores, DlqEntry, EffectCodecRegistry, OutboxDispatchStore, RateLimitCheck, RateLimitStore, ReapOutboxLeases, RecordDispatchDecision, EffectCredentialCapability, EffectHttpTransport, } from "@gest/ingest-core";
+//# sourceMappingURL=stores.d.ts.map

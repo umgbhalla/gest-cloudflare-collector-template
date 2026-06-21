@@ -1,0 +1,21 @@
+{
+  "name": "@gest/ingest-discord",
+  "version": "0.0.0",
+  "description": "Discord platform adapter: gateway/webhook envelope decoding, event identity, normalization, effect encoding",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "@gest/ingest-core": "file:../gest-ingest-core"
+  }
+}

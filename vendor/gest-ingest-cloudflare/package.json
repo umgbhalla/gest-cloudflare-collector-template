@@ -1,0 +1,21 @@
+{
+  "name": "@gest/ingest-cloudflare",
+  "version": "0.0.0",
+  "description": "Cloudflare provider adapter: raw bytes, headers, provider metadata, queue/storage/worker hooks (no platform semantics)",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "@gest/ingest-core": "file:../gest-ingest-core"
+  }
+}

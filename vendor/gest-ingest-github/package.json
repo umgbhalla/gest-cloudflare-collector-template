@@ -1,0 +1,21 @@
+{
+  "name": "@gest/ingest-github",
+  "version": "0.0.0",
+  "description": "GitHub platform adapter: webhook signature verification, delivery dedupe, envelope decoding, normalization, effect encoding",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "@gest/ingest-core": "file:../gest-ingest-core"
+  }
+}

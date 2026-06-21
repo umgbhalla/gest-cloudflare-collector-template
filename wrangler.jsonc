@@ -1,0 +1,67 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "gest-cloudflare-collector",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-06-21",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  },
+  "secrets": {
+    "required": [
+      "SLACK_SIGNING_SECRET",
+      "GITHUB_WEBHOOK_SECRET",
+      "DISCORD_PUBLIC_KEY",
+      "TELEGRAM_SECRET_TOKEN"
+    ]
+  },
+  "r2_buckets": [
+    {
+      "binding": "RAW_BUCKET",
+      "bucket_name": "gest-raw-events"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "RAW_DB",
+      "database_name": "gest-raw-db",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "queues": {
+    "producers": [
+      {
+        "binding": "WORK_QUEUE",
+        "queue": "gest-work-queue"
+      }
+    ],
+    "consumers": [
+      {
+        "queue": "gest-work-queue",
+        "max_batch_size": 50,
+        "max_batch_timeout": 1,
+        "max_retries": 3,
+        "dead_letter_queue": "gest-work-dead-letter"
+      }
+    ]
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "LANE_DO",
+        "class_name": "LaneDurableObject"
+      },
+      {
+        "name": "DISCORD_GATEWAY_DO",
+        "class_name": "DiscordGatewayRunner"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["LaneDurableObject", "DiscordGatewayRunner"]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "@gest/ingest-slack",
+  "version": "0.0.0",
+  "description": "Slack platform adapter: signing verification, envelope decoding, event identity, normalization, effect encoding",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "@gest/ingest-core": "file:../gest-ingest-core"
+  }
+}

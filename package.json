@@ -1,0 +1,62 @@
+{
+  "name": "gest-cloudflare-collector",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Deployable Gest collector template for Cloudflare Workers.",
+  "packageManager": "pnpm@11.7.0",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "deploy": "wrangler d1 migrations apply RAW_DB --remote && wrangler deploy",
+    "deploy:alchemy": "pnpm build && alchemy deploy alchemy/stack.ts",
+    "dev": "wrangler dev",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@gest/infra": "file:vendor/gest-infra",
+    "@gest/ingest-core": "file:vendor/gest-ingest-core"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260620.0",
+    "alchemy": "2.0.0-beta.29",
+    "typescript": "^5.6.3",
+    "wrangler": "^4.103.0"
+  },
+  "cloudflare": {
+    "bindings": {
+      "RAW_BUCKET": {
+        "description": "R2 bucket that stores raw platform request bodies as durable source truth."
+      },
+      "RAW_DB": {
+        "description": "D1 database for delivery records, dedupe records, journal events, outbox rows, dispatch work, rate limits, and DLQ rows."
+      },
+      "WORK_QUEUE": {
+        "description": "Cloudflare Queue that carries normalized work from webhook ingress to the runtime consumer."
+      },
+      "LANE_DO": {
+        "description": "Durable Object class used for lane-local sequencing and platform-specific coordination."
+      },
+      "DISCORD_GATEWAY_DO": {
+        "description": "Durable Object class used to host the optional Discord gateway runner."
+      },
+      "SLACK_SIGNING_SECRET": {
+        "description": "Slack app signing secret for verifying Events API requests."
+      },
+      "GITHUB_WEBHOOK_SECRET": {
+        "description": "GitHub webhook secret used for X-Hub-Signature-256 verification."
+      },
+      "DISCORD_PUBLIC_KEY": {
+        "description": "Discord application public key for interaction signature verification."
+      },
+      "DISCORD_GATEWAY_ADMIN_TOKEN": {
+        "description": "Bearer token required to start or stop the Discord gateway Durable Object admin route."
+      },
+      "TELEGRAM_SECRET_TOKEN": {
+        "description": "Telegram webhook secret token sent in X-Telegram-Bot-Api-Secret-Token."
+      },
+      "SLACK_BOT_TOKEN": {
+        "description": "Optional outbound Slack dispatch token for this single-install template."
+      }
+    }
+  }
+}

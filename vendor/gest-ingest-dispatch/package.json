@@ -1,0 +1,21 @@
+{
+  "name": "@gest/ingest-dispatch",
+  "version": "0.0.0",
+  "description": "Provider-neutral generic effect dispatch loop: reap leases, atomically claim ready outbox rows, gate on rate keys, resolve credentials via capability, send through an injected transport, parse via platform codec, record decisions, route to DLQ. No platform, provider, fetch, or env imports.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "@gest/ingest-core": "file:../gest-ingest-core"
+  }
+}

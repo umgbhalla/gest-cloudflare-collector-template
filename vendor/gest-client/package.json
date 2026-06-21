@@ -1,0 +1,21 @@
+{
+  "name": "@gest/client",
+  "version": "0.0.0",
+  "description": "Facade contract types shared by the wiring facade (@gest/infra) and the DX skin (@gest/bot, @gest/tools): ConsumerEnv, ConsumerDefinition, RendererRegistry. Pure types over @gest/ingest-core — no runtime, no cloud, no transport. This leaf breaks the project-reference cycle between the DX packages and infra.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "@gest/ingest-core": "file:../gest-ingest-core"
+  }
+}

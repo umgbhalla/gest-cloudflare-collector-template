@@ -1,0 +1,36 @@
+{
+  "name": "@gest/infra",
+  "version": "0.0.0",
+  "description": "Deployment wiring layer: binds the Cloudflare provider adapter (ingest-cloudflare) and the platform adapters (slack/github/discord/telegram) to real Cloudflare primitives (Workers, Queues, Durable Objects, D1, R2) via Alchemy. The ONLY layer allowed to import provider + platform adapters together. The ingest packages never depend on this.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./alchemy": {
+      "types": "./alchemy/dist/index.d.ts",
+      "import": "./alchemy/dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "alchemy/dist",
+    "alchemy/migrations"
+  ],
+  "dependencies": {
+    "@gest/client": "file:../gest-client",
+    "@gest/ingest-core": "file:../gest-ingest-core",
+    "@gest/ingest-cloudflare": "file:../gest-ingest-cloudflare",
+    "@gest/ingest-dispatch": "file:../gest-ingest-dispatch",
+    "@gest/ingest-slack": "file:../gest-ingest-slack",
+    "@gest/ingest-github": "file:../gest-ingest-github",
+    "@gest/ingest-discord": "file:../gest-ingest-discord",
+    "@gest/ingest-telegram": "file:../gest-ingest-telegram",
+    "alchemy": "2.0.0-beta.29",
+    "effect": "4.0.0-beta.58"
+  }
+}
